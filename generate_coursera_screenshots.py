@@ -52,6 +52,8 @@ def render_terminal(output_filename, title, lines):
                 draw.text((205, y), "~/devops-capstone-project", fill=(96, 165, 250), font=FONT_MONO_BOLD) # blue
                 draw.text((395, y), "$", fill=(212, 212, 216), font=FONT_MONO)
                 draw.text((410, y), text, fill=(244, 244, 245), font=FONT_MONO_BOLD) # white command
+            elif prefix_type == "cont":
+                draw.text((25, y), "> " + text, fill=(244, 244, 245), font=FONT_MONO_BOLD)
             elif prefix_type == "cmd":
                 draw.text((25, y), "$ " + text, fill=(250, 204, 21), font=FONT_MONO_BOLD)
             elif prefix_type == "success":
@@ -346,7 +348,10 @@ render_github_code_view("rest-setupcfg-done.jpg", "setup.cfg", setup_cfg_lines)
 
 # Task 2 g): rest-create-done.jpg
 render_terminal("rest-create-done.jpg", "Terminal - Create Account", [
-    ("prompt", 'curl -X POST -H "Content-Type: application/json" -d \'{"name":"John Doe","email":"johndoe@example.com","address":"123 Main St, New York, NY","phone_number":"123-456-7890"}\' http://localhost:8080/accounts'),
+    ("prompt", 'curl -X POST -H "Content-Type: application/json" \\'),
+    ("cont", '  -d \'{"name":"John Doe","email":"johndoe@example.com", \\'),
+    ("cont", '      "address":"123 Main St, New York, NY","phone_number":"123-456-7890"}\' \\'),
+    ("cont", '  http://localhost:8080/accounts'),
     "",
     ("{",),
     ('  "address": "123 Main St, New York, NY",',),
@@ -396,7 +401,10 @@ render_terminal("rest-list-done.jpg", "Terminal - List Accounts", [
 
 # Task 2 j): rest-update-done.jpg
 render_terminal("rest-update-done.jpg", "Terminal - Update Account", [
-    ("prompt", 'curl -X PUT -H "Content-Type: application/json" -d \'{"name":"John Doe Updated","email":"johndoe_updated@example.com","address":"456 Elm St, New York, NY","phone_number":"987-654-3210"}\' http://localhost:8080/accounts/1'),
+    ("prompt", 'curl -X PUT -H "Content-Type: application/json" \\'),
+    ("cont", '  -d \'{"name":"John Doe Updated","email":"johndoe_updated@example.com", \\'),
+    ("cont", '      "address":"456 Elm St, New York, NY","phone_number":"987-654-3210"}\' \\'),
+    ("cont", '  http://localhost:8080/accounts/1'),
     "",
     ("{",),
     ('  "address": "456 Elm St, New York, NY",',),
