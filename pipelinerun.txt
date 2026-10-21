@@ -1,0 +1,62 @@
+[init : remove] Removing all files from /workspace/source ...
+[clone : clone] + ['[' '!' -d /workspace/output/.git ']' ']'
+[clone : clone] + git init /workspace/output
+[clone : clone] Initialized empty Git repository in /workspace/output/.git/
+[clone : clone] + git remote add origin https://github.com/Samarth-Randive/devops-capstone-project.git
+[clone : clone] + git fetch --recurse-submodules=yes --depth=1 origin --update-head-ok --force main
+[clone : clone] From https://github.com/Samarth-Randive/devops-capstone-project
+[clone : clone]  * branch            main       -> FETCH_HEAD
+[clone : clone]  * [new branch]      main       -> origin/main
+[clone : clone] + git checkout -q FETCH_HEAD
+[clone : clone] Successfully cloned repository https://github.com/Samarth-Randive/devops-capstone-project.git
+[lint : flake8] Running linting with flake8...
+[lint : flake8] flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
+[lint : flake8] 0
+[lint : flake8] flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
+[lint : flake8] 0
+[tests : nose] Running nosetests...
+[tests : nose] Account Service Tests
+[tests : nose] - It should Create a new Account
+[tests : nose] - It should not Create an Account when sending the wrong data
+[tests : nose] - It should not Create an Account when sending the wrong media type
+[tests : nose] - It should get 200_OK from the Home Page
+[tests : nose] - It should be healthy
+[tests : nose] - It should Read a single Account
+[tests : nose] - It should not Read an Account that is not found
+[tests : nose] - It should Get a list of Accounts
+[tests : nose] - It should Update an existing Account
+[tests : nose] - It should not Update an Account that is not found
+[tests : nose] - It should Delete an Account
+[tests : nose] - It should not allow an illegal method call
+[tests : nose] - It should return security headers
+[tests : nose] - It should return a CORS header
+[tests : nose] 
+[tests : nose] Name                               Stmts   Miss  Cover   Missing
+[tests : nose] ----------------------------------------------------------------
+[tests : nose] service/__init__.py                   21      0   100%
+[tests : nose] service/common/cli_commands.py         8      0   100%
+[tests : nose] service/common/error_handlers.py      35      1    97%   40
+[tests : nose] service/common/log_handlers.py        11      0   100%
+[tests : nose] service/common/status.py              46      0   100%
+[tests : nose] service/config.py                      7      0   100%
+[tests : nose] service/models.py                     60      3    95%   38, 48, 144
+[tests : nose] service/routes.py                     54      1    98%   99
+[tests : nose] ----------------------------------------------------------------
+[tests : nose] TOTAL                                242      5    98%
+[tests : nose] ----------------------------------------------------------------------
+[tests : nose] Ran 14 tests in 1.482s
+[tests : nose] 
+[tests : nose] OK
+[build : buildah] STEP 1: FROM python:3.9-slim
+[build : buildah] STEP 2: WORKDIR /app
+[build : buildah] STEP 3: COPY requirements.txt .
+[build : buildah] STEP 4: RUN pip install --no-cache-dir -r requirements.txt
+[build : buildah] STEP 5: COPY service/ ./service/
+[build : buildah] STEP 6: RUN useradd --uid 1000 theia && chown -R theia /app
+[build : buildah] STEP 7: USER theia
+[build : buildah] STEP 8: EXPOSE 8080
+[build : buildah] STEP 9: CMD ["gunicorn", "--log-level=info", "--bind=0.0.0.0:8080", "service:app"]
+[build : buildah] Successfully tagged image-registry.openshift-image-registry.svc:5000/sn-labs-samarth/accounts:latest
+[deploy : apply] deployment.apps/accounts configured
+[deploy : apply] service/accounts unchanged
+PipelineRun completed successfully!
