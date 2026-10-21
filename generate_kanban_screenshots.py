@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 # Canvas dimensions
 WIDTH = 1400
-HEIGHT = 800
+HEIGHT = 1050
 
 # Color palette (Modern GitHub Dark / Clean Light UI style - let's do clean GitHub Dark/Light)
 BG_COLOR = (246, 248, 250)         # GitHub light page bg
@@ -93,10 +93,10 @@ def render_kanban_board(filename, columns_data, active_sprint_title="Sprint 1"):
         draw.text((col_x + col_width - badge_w - 6, start_y + 13), count_str, fill=COL_HEADER_TXT, font=FONT_COUNT)
 
         # Draw cards
-        card_y = start_y + 40
+        card_y = start_y + 35
         for card in cards:
-            c_height = 92
-            if card_y + c_height > start_y + col_height - 10:
+            c_height = 80
+            if card_y + c_height > start_y + col_height - 5:
                 # Overflow indicator
                 draw.text((col_x + 15, card_y + 5), f"+ {len(cards) - cards.index(card)} more...", fill=TXT_MUTED, font=FONT_SUBTITLE)
                 break
@@ -107,15 +107,15 @@ def render_kanban_board(filename, columns_data, active_sprint_title="Sprint 1"):
             # Issue number & title
             issue_num = card["id"]
             title = card["title"]
-            draw.text((col_x + 18, card_y + 8), f"#{issue_num}", fill=TXT_MUTED, font=FONT_BADGE)
+            draw.text((col_x + 16, card_y + 6), f"#{issue_num}", fill=TXT_MUTED, font=FONT_BADGE)
             
             # Shorten title if too long
             display_title = title if len(title) <= 32 else title[:30] + "..."
-            draw.text((col_x + 18, card_y + 24), display_title, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
+            draw.text((col_x + 16, card_y + 22), display_title, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
 
             # Badges row (labels, estimate, sprint)
-            bx = col_x + 18
-            by = card_y + 56
+            bx = col_x + 16
+            by = card_y + 50
 
             # Label badge
             lbl = card.get("label")
@@ -142,7 +142,7 @@ def render_kanban_board(filename, columns_data, active_sprint_title="Sprint 1"):
                 draw_rounded_rect(draw, [bx, by, bx + w, by + 18], 4, fill=SPRINT_BG)
                 draw.text((bx + 4, by + 2), sprint, fill=SPRINT_FG, font=FONT_BADGE)
 
-            card_y += c_height + 10
+            card_y += c_height + 8
 
     img.save(filename, "PNG")
     print(f"Generated {filename}")
