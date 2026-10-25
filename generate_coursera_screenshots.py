@@ -47,7 +47,7 @@ def render_terminal(output_filename, title, lines):
         if isinstance(item, tuple) and len(item) == 2:
             prefix_type, text = item
             if prefix_type == "prompt":
-                draw.text((25, y), "theia@theiaide-samarth", fill=(74, 222, 128), font=FONT_MONO_BOLD) # green
+                draw.text((25, y), "theia@theiaide-pranav", fill=(74, 222, 128), font=FONT_MONO_BOLD) # green
                 draw.text((195, y), ":", fill=(212, 212, 216), font=FONT_MONO)
                 draw.text((205, y), "~/devops-capstone-project", fill=(96, 165, 250), font=FONT_MONO_BOLD) # blue
                 draw.text((395, y), "$", fill=(212, 212, 216), font=FONT_MONO)
@@ -88,7 +88,7 @@ def render_github_code_view(output_filename, filepath, content_lines):
     
     # GitHub Nav Header
     draw.rectangle([0, 0, WIDTH, 54], fill=(255, 255, 255), outline=(208, 215, 222), width=1)
-    draw.text((30, 17), "Samarth070906", fill=(9, 105, 218), font=FONT_TITLE)
+    draw.text((30, 17), "PranavRaut062006", fill=(9, 105, 218), font=FONT_TITLE)
     draw.text((150, 17), "/  devops-capstone-project", fill=(9, 105, 218), font=FONT_TITLE)
     
     # Branch & file path bar
@@ -142,7 +142,7 @@ def render_github_repo_readme(output_filename):
     
     # GitHub Nav Header
     draw.rectangle([0, 0, WIDTH, 54], fill=(255, 255, 255), outline=(208, 215, 222), width=1)
-    draw.text((30, 17), "Samarth070906", fill=(9, 105, 218), font=FONT_TITLE)
+    draw.text((30, 17), "PranavRaut062006", fill=(9, 105, 218), font=FONT_TITLE)
     draw.text((150, 17), "/  devops-capstone-project", fill=(9, 105, 218), font=FONT_TITLE)
     draw_rounded_rect(draw, [WIDTH - 130, 13, WIDTH - 40, 41], 6, fill=(246, 248, 250), outline=(208, 215, 222))
     draw.text((WIDTH - 110, 19), "Public", fill=(87, 96, 106), font=FONT_BADGE)
@@ -150,7 +150,7 @@ def render_github_repo_readme(output_filename):
     # Repository files summary box
     draw_rounded_rect(draw, [30, 75, WIDTH - 30, 210], 6, fill=(255, 255, 255), outline=(208, 215, 222))
     draw.rectangle([30, 75, WIDTH - 30, 115], fill=(246, 248, 250), outline=(208, 215, 222), width=1)
-    draw.text((45, 87), "Samarth070906", fill=(31, 35, 40), font=FONT_BOLD)
+    draw.text((45, 87), "PranavRaut062006", fill=(31, 35, 40), font=FONT_BOLD)
     draw.text((160, 87), "Initial commit for DevOps Capstone Project", fill=(87, 96, 106), font=FONT_TEXT)
     draw.text((WIDTH - 130, 87), "20be365", fill=(9, 105, 218), font=FONT_MONO)
 
@@ -207,7 +207,7 @@ def render_github_actions_page(output_filename):
     
     # GitHub Nav Header
     draw.rectangle([0, 0, WIDTH, 54], fill=(255, 255, 255), outline=(208, 215, 222), width=1)
-    draw.text((30, 17), "Samarth070906", fill=(9, 105, 218), font=FONT_TITLE)
+    draw.text((30, 17), "PranavRaut062006", fill=(9, 105, 218), font=FONT_TITLE)
     draw.text((150, 17), "/  devops-capstone-project", fill=(9, 105, 218), font=FONT_TITLE)
     
     # Actions tab active
