@@ -1,4 +1,4 @@
-# DevOps Capstone Project - Accounts Service
+# DevOps Capstone
 
 [![Build Status](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
