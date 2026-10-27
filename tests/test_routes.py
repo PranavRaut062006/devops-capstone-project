@@ -81,6 +81,8 @@ class TestAccountService(TestCase):
         """It should get 200_OK from the Home Page"""
         response = self.client.get("/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data, {"name": "Account REST API Service", "version": "1.0"})
 
     def test_health(self):
         """It should be healthy"""

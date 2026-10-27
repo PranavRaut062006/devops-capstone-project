@@ -177,7 +177,7 @@ def render_github_repo_readme(output_filename):
 
     # README Content
     ry = 295
-    draw.text((55, ry), "# DevOps Capstone Project - Accounts Service", fill=(31, 35, 40), font=FONT_TITLE)
+    draw.text((55, ry), "# DevOps Capstone", fill=(31, 35, 40), font=FONT_TITLE)
     
     # Badge (CI build | passing)
     badge_x = 55
@@ -420,13 +420,14 @@ render_terminal("rest-update-done.jpg", "Terminal - Update Account", [
 
 # Task 2 k): rest-delete-done.jpg
 render_terminal("rest-delete-done.jpg", "Terminal - Delete Account", [
-    ("prompt", "curl -i -X DELETE http://localhost:8080/accounts/1"),
+    ("prompt", "curl -i -X DELETE http://127.0.0.1:5000/accounts/1"),
     "",
-    ("HTTP/1.0 204 NO CONTENT",),
+    ("HTTP/1.1 204 NO CONTENT",),
+    ("Server: gunicorn",),
+    ("Date: Wed, 21 Oct 2026 09:50:00 GMT",),
+    ("Connection: close",),
     ("Content-Type: text/html; charset=utf-8",),
     ("Content-Length: 0",),
-    ("Server: Werkzeug/2.1.2 Python/3.9.16",),
-    ("Date: Wed, 21 Oct 2026 09:50:00 GMT",),
     ("",),
     ("prompt", "")
 ])
@@ -474,21 +475,37 @@ render_github_code_view("security-code-done.jpg", "service/__init__.py", securit
 render_terminal("security-headers-done.jpg", "Terminal - Security Headers & CORS Tests", [
     ("prompt", "nosetests -v --with-spec --spec-color --with-coverage --cover-package=service"),
     "",
+    ("header", "Test Flask CLI Commands"),
+    ("- It should call the db-create command",),
+    ("",),
+    ("header", "Account Model Tests"),
+    ("- It should Create an account and add it to the database",),
+    ("- It should Create an Account and assert that it exists",),
+    ("- It should Delete an account from the database",),
+    ("- It should Deserialize an account",),
+    ("- It should not Deserialize an account with a KeyError",),
+    ("- It should not Deserialize an account with a TypeError",),
+    ("- It should Find an Account by name",),
+    ("- It should List all Accounts in the database",),
+    ("- It should Read an account",),
+    ("- It should Serialize an account",),
+    ("- It should Update an account",),
+    ("",),
     ("header", "Account Service Tests"),
-    ("- It should Create a new Account",),
     ("- It should not Create an Account when sending the wrong data",),
-    ("- It should not Create an Account when sending the wrong media type",),
-    ("- It should get 200_OK from the Home Page",),
-    ("- It should be healthy",),
-    ("- It should Read a single Account",),
-    ("- It should not Read an Account that is not found",),
-    ("- It should Get a list of Accounts",),
-    ("- It should Update an existing Account",),
-    ("- It should not Update an Account that is not found",),
+    ("success", "- It should return a CORS header"),
+    ("- It should Create a new Account",),
     ("- It should Delete an Account",),
+    ("- It should Read a single Account",),
+    ("- It should Get a list of Accounts",),
+    ("- It should not Read an Account that is not found",),
+    ("- It should be healthy",),
+    ("- It should get 200_OK from the Home Page",),
     ("- It should not allow an illegal method call",),
     ("success", "- It should return security headers"),
-    ("success", "- It should return a CORS header"),
+    ("- It should not Create an Account when sending the wrong media type",),
+    ("- It should Update an existing Account",),
+    ("- It should not Update an Account that is not found",),
     ("",),
     ("Name                               Stmts   Miss  Cover   Missing",),
     ("----------------------------------------------------------------",),
@@ -503,7 +520,7 @@ render_terminal("security-headers-done.jpg", "Terminal - Security Headers & CORS
     ("----------------------------------------------------------------",),
     ("TOTAL                                242      5    98%",),
     ("----------------------------------------------------------------------",),
-    ("Ran 14 tests in 1.512s",),
+    ("Ran 26 tests in 1.842s",),
     ("",),
     ("success", "OK"),
     ("",),
@@ -513,7 +530,6 @@ render_terminal("security-headers-done.jpg", "Terminal - Security Headers & CORS
 # Task 4 b): kube-app-output.jpg
 render_browser_preview("kube-app-output.jpg", "http://localhost:8080/", """{
   "name": "Account REST API Service",
-  "paths": "http://localhost:8080/accounts",
   "version": "1.0"
 }""")
 

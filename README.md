@@ -1,10 +1,10 @@
 # DevOps Capstone
 
-[![Build Status](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml)
+[![Build Status](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg?branch=main)](https://github.com/PranavRaut062006/devops-capstone-project/actions/workflows/ci-build.yaml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.9](https://img.shields.io/badge/Python-3.9-green.svg)](https://shields.io/)
 
-This repository contains the starter code for the project in [**IBM-CD0285EN-SkillsNetwork DevOps Capstone Project**](https://www.coursera.org/learn/devops-capstone-project?specialization=devops-and-software-engineering) which is part of the [**IBM DevOps and Software Engineering Professional Certificate**](https://www.coursera.org/professional-certificates/devops-and-software-engineering)
+This repository contains the project code for **DevOps Capstone** - an Accounts REST API service developed as part of the [**IBM-CD0285EN-SkillsNetwork DevOps Capstone Project**](https://www.coursera.org/learn/devops-capstone-project?specialization=devops-and-software-engineering) which is part of the [**IBM DevOps and Software Engineering Professional Certificate**](https://www.coursera.org/professional-certificates/devops-and-software-engineering).
 
 ## Usage
 
@@ -97,7 +97,7 @@ Complete this microservice by implementing REST API's for `READ`, `UPDATE`, `DEL
 
 ## Local Kubernetes Development
 
-This repo can also be used for local Kubernetes development. It is not advised that you run these commands in the Cloud IDE environment. The purpose of these commands are to simulate the Cloud IDE environment locally on your computer. 
+This repo can also be used for local Kubernetes development. It is not advised that you run these commands in the Cloud IDE environment. The purpose of these commands is to simulate the Cloud IDE environment locally on your computer. 
 
 At a minimum, you will need [Docker Desktop](https://www.docker.com/products/docker-desktop) installed on your computer. For the full development environment, you will also need [Visual Studio Code](https://code.visualstudio.com) with the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension from the Visual Studio Marketplace. All of these can be installed manually by clicking on the links above or you can use a package manager like **Homebrew** on Mac of **Chocolatey** on Windows.
 
@@ -131,4 +131,4 @@ You can now perform Tekton development locally, just like in the Cloud IDE lab e
 
 Licensed under the Apache License. See [LICENSE](LICENSE)
 
-## <h3 align="center"> © IBM Corporation 2022. All rights reserved. <h3/>
+## <h3 align="center"> © IBM Corporation 2022. All rights reserved. </h3>

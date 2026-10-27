@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 # Canvas dimensions
 WIDTH = 1400
-HEIGHT = 1050
+HEIGHT = 1150
 
 # Color palette (Modern GitHub Dark / Clean Light UI style - let's do clean GitHub Dark/Light)
 BG_COLOR = (246, 248, 250)         # GitHub light page bg
@@ -109,13 +109,24 @@ def render_kanban_board(filename, columns_data, active_sprint_title="Sprint 1"):
             title = card["title"]
             draw.text((col_x + 16, card_y + 6), f"#{issue_num}", fill=TXT_MUTED, font=FONT_BADGE)
             
-            # Shorten title if too long
-            display_title = title if len(title) <= 32 else title[:30] + "..."
-            draw.text((col_x + 16, card_y + 22), display_title, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
+            # Wrap title cleanly if needed so full text is visible
+            words = title.split()
+            l1, l2 = "", ""
+            for w in words:
+                if len(l1 + (" " if l1 else "") + w) <= 24:
+                    l1 = l1 + (" " if l1 else "") + w
+                else:
+                    l2 = l2 + (" " if l2 else "") + w
+            if l2:
+                draw.text((col_x + 16, card_y + 20), l1, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
+                draw.text((col_x + 16, card_y + 34), l2, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
+                by = card_y + 54
+            else:
+                draw.text((col_x + 16, card_y + 22), l1, fill=TXT_PRIMARY, font=FONT_CARD_TITLE)
+                by = card_y + 50
 
             # Badges row (labels, estimate, sprint)
             bx = col_x + 16
-            by = card_y + 50
 
             # Label badge
             lbl = card.get("label")
