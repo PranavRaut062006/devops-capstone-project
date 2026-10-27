@@ -171,18 +171,15 @@ U8 = {"id": 8, "title": "Containerize your microservice using Docker", "label": 
 U9 = {"id": 9, "title": "Deploy your Docker image to Kubernetes", "label": "Enhancement", "estimate": 5, "sprint": "Sprint 3"}
 U10 = {"id": 10, "title": "Create a CD pipeline to automate deployment to Kubernetes", "label": "Enhancement", "estimate": 8, "sprint": "Sprint 3"}
 
-# Stripped down copies for initial phases
+# Stripped down copies for initial phases (Sprint 1 planning: exactly 7 user stories)
 U_ALL_RAW = [
-    {"id": 1, "title": "Setting up the development environment"},
+    {"id": 1, "title": "Set up the development environment"},
     {"id": 2, "title": "Read an account from the service"},
-    {"id": 3, "title": "List all accounts in the service"},
-    {"id": 4, "title": "Update an account in the service"},
-    {"id": 5, "title": "Delete an account from the service"},
-    {"id": 6, "title": "Need the ability to automate continuous integration checks"},
-    {"id": 7, "title": "Need to add security headers and CORS policies"},
-    {"id": 8, "title": "Containerize your microservice using Docker"},
-    {"id": 9, "title": "Deploy your Docker image to Kubernetes"},
-    {"id": 10, "title": "Create a CD pipeline to automate deployment to Kubernetes"},
+    {"id": 3, "title": "Update an account in the service"},
+    {"id": 4, "title": "Delete an account from the service"},
+    {"id": 5, "title": "List all accounts in the service"},
+    {"id": 6, "title": "Containerize your microservice using Docker"},
+    {"id": 7, "title": "Deploy your Docker image to Kubernetes"},
 ]
 
 # Task 3: planning-userstories-done.png

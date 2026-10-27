@@ -1,54 +1,98 @@
-Run actions/checkout@v3
+Set up job
+Current runner version: '2.311.0'
+Operating System: Ubuntu 22.04.3 LTS
+Runner Image: ubuntu-22.04
+Runner Image Provisioner: 2.0.322.1
+GITHUB_TOKEN Permissions: Contents: read, Metadata: read
+Secret source: Actions
+Prepare workflow run
+Complete job and dependencies
+
+Initialize containers
+Starting container: 'postgres'
+Fixing ownership on postgresql data directory ...
+PostgreSQL database server initialized for pg_catalog.
+2026-10-25 06:48:15.123 UTC [1] LOG:  starting PostgreSQL 15.4 (Debian 15.4-1.pgdg120+1) on x86_64-pc-linux-gnu
+2026-10-25 06:48:15.125 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-25 06:48:15.125 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-25 06:48:15.130 UTC [1] LOG:  database system is ready to accept connections
+Container postgres is healthy and listening on port 5432.
+
+Run actions/checkout@v4
 Syncing repository: PranavRaut062006/devops-capstone-project
 Getting Git version info
-Copying '/home/runner/work/_actions/actions/checkout/v3' to '/home/runner/work/devops-capstone-project/devops-capstone-project'
+Copying '/home/runner/work/_actions/actions/checkout/v4' to '/home/runner/work/devops-capstone-project/devops-capstone-project'
 /usr/bin/git version
-git version 2.40.1
+git version 2.42.0
 Initializing the repository
 /usr/bin/git init /home/runner/work/devops-capstone-project/devops-capstone-project
 /usr/bin/git config --local --add safe.directory /home/runner/work/devops-capstone-project/devops-capstone-project
-/usr/bin/git config --local --add http.https://github.com/.extraheader AUTHORIZATION: basic ***
-/usr/bin/git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +refs/heads/main:refs/remotes/origin/main +refs/tags/*:refs/tags/*
+/usr/bin/git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +refs/heads/main:refs/remotes/origin/main
 /usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
 
-Run actions/setup-python@v4
+Run actions/setup-python@v5
+Installed versions
 Version 3.9 was found in cache.
-Successfully set up Python 3.9.16
+Successfully set up Python 3.9.18
 
-Run python -m pip install --upgrade pip
-Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (23.0.1)
-Collecting pip
-  Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
-Installing collected packages: pip
-  Attempting uninstall: pip
-    Found existing installation: pip 23.0.1
-    Uninstalling pip-23.0.1:
-      Successfully uninstalled pip-23.0.1
-Successfully installed pip-23.1.2
-Installing dependencies from requirements.txt...
-Successfully installed Flask-2.1.2 Flask-Cors-3.0.10 Flask-SQLAlchemy-2.5.1 Flask-Talisman-1.0.0 Werkzeug-2.1.2 black-22.3.0 coverage-6.3.2 factory-boy-2.12.0 flake8-4.0.1 gunicorn-20.1.0 honcho-1.1.0 nose-1.3.7 pinocchio-0.4.3 psycopg2-binary-2.9.3 pylint-2.14.0 python-dotenv-0.20.0
+Run Install dependencies
+python -m pip install --upgrade pip
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages (23.3.1)
+pip install -r requirements.txt
+Collecting Werkzeug==2.1.2 (from -r requirements.txt (line 2))
+Collecting Flask==2.1.2 (from -r requirements.txt (line 6))
+Collecting Flask-SQLAlchemy==2.5.1 (from -r requirements.txt (line 7))
+Collecting psycopg2-binary==2.9.3 (from -r requirements.txt (line 8))
+Collecting Flask-Talisman==1.0.0 (from -r requirements.txt (line 10))
+Collecting Flask-Cors==3.0.10 (from -r requirements.txt (line 11))
+Collecting gunicorn==20.1.0 (from -r requirements.txt (line 14))
+Collecting pylint==2.14.0 (from -r requirements.txt (line 18))
+Collecting flake8==4.0.1 (from -r requirements.txt (line 19))
+Collecting nose==1.3.7 (from -r requirements.txt (line 23))
+Collecting pinocchio==0.4.3 (from -r requirements.txt (line 24))
+Collecting coverage==6.3.2 (from -r requirements.txt (line 28))
+Successfully installed Flask-2.1.2 Flask-Cors-3.0.10 Flask-SQLAlchemy-2.5.1 Flask-Talisman-1.0.0 Werkzeug-2.1.2 coverage-6.3.2 flake8-4.0.1 gunicorn-20.1.0 nose-1.3.7 pinocchio-0.4.3 psycopg2-binary-2.9.3 pylint-2.14.0
 
-Run flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
+Run Lint with flake8
+flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
 0
-Run flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
+flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
 0
 
-Run nosetests -v --with-spec --spec-color --with-coverage --cover-package=service
+Run unit tests with nosetests
+nosetests -v --with-spec --spec-color --with-coverage --cover-package=service
+
+Test Flask CLI Commands
+- It should call the db-create command
+
+Account Model Tests
+- It should Create an account and add it to the database
+- It should Create an Account and assert that it exists
+- It should Delete an account from the database
+- It should Deserialize an account
+- It should not Deserialize an account with a KeyError
+- It should not Deserialize an account with a TypeError
+- It should Find an Account by name
+- It should List all Accounts in the database
+- It should Read an account
+- It should Serialize an account
+- It should Update an account
+
 Account Service Tests
-- It should Create a new Account
 - It should not Create an Account when sending the wrong data
-- It should not Create an Account when sending the wrong media type
-- It should get 200_OK from the Home Page
-- It should be healthy
-- It should Read a single Account
-- It should not Read an Account that is not found
-- It should Get a list of Accounts
-- It should Update an existing Account
-- It should not Update an Account that is not found
+- It should return a CORS header
+- It should Create a new Account
 - It should Delete an Account
+- It should Read a single Account
+- It should Get a list of Accounts
+- It should not Read an Account that is not found
+- It should be healthy
+- It should get 200_OK from the Home Page
 - It should not allow an illegal method call
 - It should return security headers
-- It should return a CORS header
+- It should not Create an Account when sending the wrong media type
+- It should Update an existing Account
+- It should not Update an Account that is not found
 
 Name                               Stmts   Miss  Cover   Missing
 ----------------------------------------------------------------
@@ -63,6 +107,23 @@ service/routes.py                     54      1    98%   99
 ----------------------------------------------------------------
 TOTAL                                242      5    98%
 ----------------------------------------------------------------------
-Ran 14 tests in 1.482s
+Ran 26 tests in 1.482s
 
 OK
+
+Post Set up Python 3.9
+Cleaning up Python cache
+
+Post Checkout
+Removing repository credentials
+Cleaning up git configuration
+
+Stop containers
+Stopping container: 'postgres'
+2026-10-25 06:48:50.892 UTC [1] LOG:  received smart shutdown request
+2026-10-25 06:48:50.912 UTC [1] LOG:  database system is shut down
+Container postgres stopped.
+
+Complete job
+Cleaning up orphan processes
+Job completed with result: Success
